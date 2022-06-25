@@ -7,14 +7,18 @@ from .models import Post
 
 class PostListView(ListView):
     model = Post
+    template_name = "blog/post_list.html"
 
 
 class PostCreateView(CreateView):
     model = Post
+    fields = "__all__"
+    template_name = "blog/post_form.html"
 
 
 class PostDetailView(DetailView):
     model = Post
+    template_name = "blog/post_detail.html"
 
 
 class PostUpdateView(UpdateView):
@@ -23,7 +27,8 @@ class PostUpdateView(UpdateView):
     success_url = reverse_lazy("blog:all")
 
 
-class PostDeleteView(UpdateView):
+class PostDeleteView(DeleteView):
     model = Post
     fields = "__all__"
+    template_name = "blog/post_confirm_delete.html"
     success_url = reverse_lazy("blog:all")
